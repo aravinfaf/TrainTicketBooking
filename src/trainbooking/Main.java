@@ -31,21 +31,43 @@ public class Main {
                 TicketBooking.availableMiddleBerth--;
             }
             else if (passenger.berthPreference.equalsIgnoreCase("U")){
-                System.out.println("Upper berth given");
+                System.out.println("<--- Upper berth given --->");
                 ticketBooking.bookTicket(passenger,TicketBooking.lowerBerthPosition.get(0),"U");
                 TicketBooking.upperBerthPosition.remove(0);
                 TicketBooking.availableUpperBerth--;
             }
         }
+        else if(TicketBooking.availableLowerBerth > 0){
+            System.out.println("<--- Lower berth given --->");
+            ticketBooking.bookTicket(passenger,TicketBooking.lowerBerthPosition.get(0),"L");
+            TicketBooking.availableLowerBerth--;
+            TicketBooking.lowerBerthPosition.remove(0);
+        }
+        else if(TicketBooking.availableMiddleBerth > 0){
+            System.out.println("<--- Middle berth given --->");
+            ticketBooking.bookTicket(passenger,TicketBooking.middleBerthPosition.get(0),"M");
+            TicketBooking.availableMiddleBerth--;
+            TicketBooking.middleBerthPosition.remove(0);
+        }
+        else if(TicketBooking.availableUpperBerth > 0){
+            System.out.println("<--- Upper berth given --->");
+            ticketBooking.bookTicket(passenger,TicketBooking.upperBerthPosition.get(0),"L");
+            TicketBooking.availableUpperBerth--;
+            TicketBooking.upperBerthPosition.remove(0);
+        }
         else if(TicketBooking.availableRacPositions > 0){
-            System.out.println("Added in RAC");
-            ticketBooking.addToRAC(passenger,TicketBooking.lowerBerthPosition.get(0),"RAC");
+            System.out.println("<--- Added in RAC --->");
+            ticketBooking.addToRAC(passenger,TicketBooking.racBerthPosition.get(0),"RAC");
         }
         else if(TicketBooking.availableWLPositions > 0){
-            System.out.println("Added in WL ");
+            System.out.println("<--- Added in WL --->");
             ticketBooking.addToWL(passenger,TicketBooking.wlBerthPosition.get(0),"WL");
         }
+    }
 
+    static void cancelTicket(int passengerId){
+        TicketBooking ticketBooking = new TicketBooking();
+        ticketBooking.cancelTicket(passengerId);
     }
 
     public static void main(String[] args) {
@@ -68,11 +90,26 @@ public class Main {
                     bookTicket(passenger);
                 }
                     break;
+                case 2:{
+                    System.out.println("<--- Enter ticket Id to cancel --->");
+                    int passengerId = scanner.nextInt();
+                    cancelTicket(passengerId);
+                }break;
+                case 3 :{
+                    TicketBooking ticketBooking = new TicketBooking();
+                    ticketBooking.printAvailable();
+                }
+                break;
                 case 4 : {
                     System.out.println("<---- Booked Ticket Details ---->");
                     TicketBooking ticketBooking  = new TicketBooking();
                     ticketBooking.printBookedTickets();
                 }
+                break;
+                case 5 : {
+                    loop = false;
+                }
+                break;
             }
         }
     }
