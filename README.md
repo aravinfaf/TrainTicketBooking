@@ -3,10 +3,10 @@
 # Work flow
 
 1.Book Ticket 
- 2.Cancel Ticket 
- 3.Available Tickets 
- 4.Booked Tickets 
- 5.Exit
+2.Cancel Ticket 
+3.Available Tickets 
+4.Booked Tickets 
+5.Exit
  
 3
 
